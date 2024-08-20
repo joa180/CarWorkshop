@@ -19,6 +19,10 @@ namespace CarWorkshop.Application.CarWorkshop
                 .Custom((value, context) =>
                 {
                     var existingCarWorkshop = repository.GetByName(value);
+                    if (existingCarWorkshop != null) 
+                    {
+                        context.AddFailure($"{value} is not unique name for car workshop");
+                    }
                 });
 
             RuleFor(c => c.Description)
