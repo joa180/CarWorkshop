@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CarWorkshop.Application.CarWorkshop;
 using CarWorkshop.Domain.Entities;
+using Microsoft.AspNetCore.Routing.Constraints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace CarWorkshop.Application.Mapping
                     Street = src.Street,
                 }));
 
+            CreateMap<Domain.Entities.CarWorkshop, CarWorkshopDto>()
+                .ForMember(dto => dto.Street, dto => dto.MapFrom(src => src.ContactDetails.Street))
+                .ForMember(dto => dto.City, dto => dto.MapFrom(src => src.ContactDetails.City))
+                .ForMember(dto => dto.PostalCode, dto => dto.MapFrom(src => src.ContactDetails.PostalCode))
+                .ForMember(dto => dto.PhoneNumber, dto => dto.MapFrom(src => src.ContactDetails.PhoneNumber));
         }
     }
 }
