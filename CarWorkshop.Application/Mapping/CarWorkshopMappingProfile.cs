@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarWorkshop.Application.CarWorkshop;
+using CarWorkshop.Application.CarWorkshop.Commands.EditCarWorkshop;
 using CarWorkshop.Domain.Entities;
 using Microsoft.AspNetCore.Routing.Constraints;
 using System;
@@ -28,6 +29,8 @@ namespace CarWorkshop.Application.Mapping
                 .ForMember(dto => dto.City, dto => dto.MapFrom(src => src.ContactDetails.City))
                 .ForMember(dto => dto.PostalCode, dto => dto.MapFrom(src => src.ContactDetails.PostalCode))
                 .ForMember(dto => dto.PhoneNumber, dto => dto.MapFrom(src => src.ContactDetails.PhoneNumber));
+
+            CreateMap<CarWorkshopDto, EditCarkworkshopCommand>();
         }
     }
 }
